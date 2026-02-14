@@ -1,0 +1,15 @@
+# Source files (published via dist/)
+src/
+tsconfig.json
+
+# Development files
+.gitignore
+*.tgz
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

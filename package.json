@@ -1,0 +1,65 @@
+{
+  "name": "@woodman231/binary-message-manager",
+  "version": "1.0.0",
+  "description": "Abstract base class for encoding, decoding, framing, and deframing binary messages with streaming support",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:esm": "esbuild src/index.ts src/BinaryMessageManager.ts --bundle --format=esm --outdir=dist/esm --packages=external",
+    "build:cjs": "esbuild src/index.ts src/BinaryMessageManager.ts --bundle --format=cjs --outdir=dist/cjs --out-extension:.js=.cjs --packages=external",
+    "build:types": "tsc",
+    "build:types:cjs": "cp dist/index.d.ts dist/index.d.cts && cp dist/BinaryMessageManager.d.ts dist/BinaryMessageManager.d.cts",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types && npm run build:types:cjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "binary",
+    "message",
+    "framing",
+    "deframing",
+    "streaming",
+    "protocol",
+    "buffer",
+    "uint8array",
+    "encoder",
+    "decoder"
+  ],
+  "author": "woodman231",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodman231/binary-message-manager.git"
+  },
+  "homepage": "https://github.com/woodman231/binary-message-manager#readme",
+  "bugs": {
+    "url": "https://github.com/woodman231/binary-message-manager/issues"
+  },
+  "engines": {
+    "node": ">=16.5.0"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "esbuild": "^0.27.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
