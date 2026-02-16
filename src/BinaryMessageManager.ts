@@ -607,7 +607,7 @@ export abstract class BinaryMessageManager<TDecodedType> {
         let buffer: Uint8Array = new Uint8Array(0);
 
         return new TransformStream<Uint8Array, TDecodedType>({
-            transform(chunk, controller) {
+            transform(chunk: Uint8Array, controller: TransformStreamDefaultController<TDecodedType>): void {
                 // Append chunk to buffer
                 const newBuffer = new Uint8Array(buffer.length + chunk.length);
                 newBuffer.set(buffer, 0);
@@ -635,7 +635,7 @@ export abstract class BinaryMessageManager<TDecodedType> {
                 }
             },
 
-            flush(controller) {
+            flush(controller: TransformStreamDefaultController<TDecodedType>): void {
                 if (buffer.length > 0) {
                     controller.error(new Error(`Stream ended with ${buffer.length} bytes of incomplete message data`));
                 }
