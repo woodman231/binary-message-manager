@@ -1,6 +1,6 @@
 {
   "name": "@woodman231/binary-message-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Abstract base class for encoding, decoding, framing, and deframing binary messages with streaming support",
   "type": "module",
   "main": "./dist/cjs/index.cjs",
